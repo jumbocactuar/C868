@@ -16,5 +16,20 @@ namespace C868
         {
             InitializeComponent();
         }
+
+        private void LogInButton_Clicked(object sender, EventArgs e)
+        {
+            bool result = App.PlannerRepo.LoginChecker(userNameEntry.Text, passwordEntry.Text);
+
+            if (result == true)
+            {
+
+            }
+
+            else
+            {
+
+            }
+        }
     }
 }

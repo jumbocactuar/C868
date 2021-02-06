@@ -49,6 +49,9 @@
                 <Setter Property="TextColor" Value="#fff" />
                 <Setter Property="VerticalOptions" Value="Start" />
             </Style>
+            <Style TargetType="ContentPage" x:Key="pageBG">
+                <Setter Property="Background" Value="#fff" />
+            </Style>
             <Style TargetType="Label" x:Key="pageLabelStyle">
                 <Setter Property="FontFamily" Value="Lato-Bold" />
                 <Setter Property="FontSize" Value="22" />

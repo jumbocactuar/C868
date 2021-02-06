@@ -22,7 +22,7 @@ namespace C868.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            string dbPath = FileAccessHelper.GetLocalFilePath("c9713.db3");
+            string dbPath = FileAccessHelper.GetLocalFilePath("c868.db3");
             LoadApplication(new App(dbPath));
         }
 

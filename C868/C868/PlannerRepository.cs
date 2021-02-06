@@ -22,6 +22,7 @@ namespace C868
         public PlannerRepository(string dbPath)
         {
             cxn = new SQLiteConnection(dbPath);
+            cxn.CreateTable<User>();
             cxn.CreateTable<Term>();
             cxn.CreateTable<Course>();
             cxn.CreateTable<Assessment>();
@@ -40,6 +41,11 @@ namespace C868
         public void AddTerm(string title, DateTime start, DateTime end)
         {
             cxn.Insert(new Term { Title = title, Start = start, End = end });
+        }
+
+        public void AddUser(string userName, string password)
+        {
+            cxn.Insert(new User { UserName = userName, Password = password });
         }
 
         public void DeleteAssessment(int id)
@@ -83,6 +89,13 @@ namespace C868
             }
 
             return filteredCollection;
+        }
+
+        public List<User> GetAllUsers()
+        {
+            var list = cxn.Query<User>("SELECT * FROM users");
+
+            return list;
         }
 
         public ObservableCollection<Assessment> GetAssessmentsList()
@@ -308,6 +321,50 @@ namespace C868
             if (valueEntered == null || valueEntered == "")
             {
                 return result = false;
+            }
+
+            return result;
+        }
+
+        public bool LoginChecker(string userName, string password)
+        {
+            bool result = false;
+            bool userNameOK = false;
+            bool passwordOK = false;
+
+            List<User> userList = GetAllUsers();
+
+            // If the user name and/or password is null or empty, mark it/them as invalid
+            if (userName == null || userName == "")
+            {
+                return result = false;
+            }
+
+            if (password == null || password == "")
+            {
+                return result = false;
+            }
+
+            else
+            {
+                // If both the user name and password match those of a user in the database, mark it as valid
+                foreach (User user in userList)
+                {
+                    if (user.UserName == userName)
+                    {
+                        userNameOK = true;
+                    }
+
+                    if (user.Password == password)
+                    {
+                        passwordOK = true;
+                    }
+                }
+
+                if (userNameOK == true && passwordOK == true)
+                {
+                    return result = true;
+                }
             }
 
             return result;
