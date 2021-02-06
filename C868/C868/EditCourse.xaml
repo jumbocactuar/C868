@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C868.EditCourse"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <Label Style ="{StaticResource headerStyle}" />
+
+        <ScrollView Margin="0, 0, 0, 10">
+            <StackLayout Padding="20, 0, 20, 0">
+                <Label Style="{StaticResource pageLabelStyle}"
+                   Padding="0, 10, 0, 0"
+                   Text="EDIT COURSE" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="COURSE TITLE" />
+
+                <Entry x:Name="editCourseNameEntry"
+                       Text="{Binding CourseName}" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="START DATE" />
+
+                <DatePicker x:Name="editCourseStartDatePicker"
+                            Date="{Binding Start} "/>
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="END DATE" />
+
+                <DatePicker x:Name="editCourseEndDatePicker"
+                            Date="{Binding End}" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="ENABLE START/END NOTIFICATIONS" />
+
+                <Switch x:Name="editCourseNotificationsSwitch"
+                        HorizontalOptions="Start"
+                        IsToggled="{Binding NotificationsEnabled}" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="STATUS" />
+
+                <Picker x:Name="editCourseStatusPicker"
+                        SelectedItem="{Binding Status}">
+                    <Picker.Items>
+                        <x:String>Plan to take</x:String>
+                        <x:String>In progress</x:String>
+                        <x:String>Completed</x:String>
+                        <x:String>Dropped</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="INSTRUCTOR NAME" />
+
+                <Entry x:Name="editCourseInstNameEntry"
+                       Text="{Binding InstName}" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="INSTRUCTOR PHONE" />
+
+                <Entry x:Name="editCourseInstPhoneEntry"
+                       Text="{Binding InstPhone}" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="INSTRUCTOR EMAIL" />
+
+                <Entry x:Name="editCourseInstEmailEntry"
+                       Text="{Binding InstEmail}" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="NOTES" />
+
+                <Editor x:Name="editCourseNotesEditor"
+                        Placeholder="Max. 250 characters"
+                        Text="{Binding Notes}}" />
+
+                <Button x:Name="editCourseSaveButton"
+                    Style="{StaticResource addButtonStyle}"
+                    Text="SAVE"
+                    Margin="0, 15, 0, 0"
+                    Clicked="EditCourseSaveButton_Clicked"/>
+
+                <Button Style="{StaticResource cancelButtonStyle}"
+                    Margin="0, 7, 0, 0"
+                    Clicked="CancelButton_Clicked" />
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

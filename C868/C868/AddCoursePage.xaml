@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C868.AddCoursePage"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <Label Style ="{StaticResource headerStyle}" />
+        
+        <ScrollView Margin="0, 0, 0, 10">
+            <StackLayout Padding="20, 0, 20, 0">
+                <Label Style="{StaticResource pageLabelStyle}"
+                   Padding="0, 10, 0, 0"
+                   Text="ADD COURSE" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="COURSE TITLE" />
+
+                <Entry x:Name="addCourseNameEntry" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="START DATE" />
+
+                <DatePicker x:Name="addCourseStartDatePicker" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="END DATE" />
+
+                <DatePicker x:Name="addCourseEndDatePicker" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="ENABLE START/END NOTIFICATIONS" />
+
+                <Switch x:Name="addCourseNotificationsSwitch"
+                        HorizontalOptions="Start"
+                        IsToggled="False" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="STATUS" />
+
+                <Picker x:Name="addCourseStatusPicker">
+                    <Picker.Items>
+                        <x:String>Plan to take</x:String>
+                        <x:String>In progress</x:String>
+                        <x:String>Completed</x:String>
+                        <x:String>Dropped</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="INSTRUCTOR NAME" />
+
+                <Entry x:Name="addCourseInstNameEntry" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="INSTRUCTOR PHONE" />
+
+                <Entry x:Name="addCourseInstPhoneEntry" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="INSTRUCTOR EMAIL" />
+
+                <Entry x:Name="addCourseInstEmailEntry" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="NOTES" />
+
+                <Editor x:Name="addCourseNotesEditor"
+                        Placeholder="Max. 250 characters" />
+
+                <Button x:Name="addCourseSaveButton"
+                    Style="{StaticResource addButtonStyle}"
+                    Text="SAVE"
+                    Margin="0, 15, 0, 0"
+                    Clicked="OnSaveButton_Clicked"/>
+
+                <Button Style="{StaticResource cancelButtonStyle}"
+                    Margin="0, 7, 0, 0"
+                    Clicked="OnCancelButton_Clicked" />
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

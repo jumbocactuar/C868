@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C868.AddAssessmentPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <Label Style ="{StaticResource headerStyle}" />
+
+        <ScrollView>
+            <StackLayout Padding="20, 0, 20, 0">
+                <Label Style="{StaticResource pageLabelStyle}"
+                   Padding="0, 10, 0, 0"
+                   Text="ADD ASSESSMENT" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="ASSESSMENT NAME" />
+
+                <Entry x:Name="addAssessmentNameEntry" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="TYPE" />
+
+                <Picker x:Name="addAssessmentTypePicker">
+                    <Picker.Items>
+                        <x:String>Objective</x:String>
+                        <x:String>Performance</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="START DATE" />
+
+                <DatePicker x:Name="addAssessmentStartDatePicker" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="END DATE" />
+
+                <DatePicker x:Name="addAssessmentEndDatePicker" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="ENABLE START/END NOTIFICATIONS" />
+
+                <Switch x:Name="addAssessmentNotificationsSwitch"
+                        HorizontalOptions="Start"
+                        IsToggled="False" />
+
+                <Button x:Name="addAssessmentSaveButton"
+                    Style="{StaticResource addButtonStyle}"
+                    Text="SAVE"
+                    Margin="0, 15, 0, 0"
+                    Clicked="AddAssessmentSaveButton_Clicked"/>
+
+                <Button Style="{StaticResource cancelButtonStyle}"
+                    Margin="0, 7, 0, 10"
+                    Clicked="OnCancelButton_Clicked" />
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
