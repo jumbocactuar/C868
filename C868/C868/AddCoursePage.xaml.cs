@@ -33,6 +33,7 @@ namespace C868
             string instPhone = addCourseInstPhoneEntry.Text;
             string instEmail = addCourseInstEmailEntry.Text;
             string notes = addCourseNotesEditor.Text;
+            string grade = addCourseGradeEntry.Text;
 
             // Validate form inputs
             bool titleResult = App.PlannerRepo.EntryChecker(courseName);
@@ -82,13 +83,18 @@ namespace C868
                 notes = "";
             }
 
+            if (grade == null)
+            {
+                grade = "";
+            }
+
             if (titleResult == true && dateResult == true && statusResult == true && instNameResult == true && instPhoneResult == true && instEmailResult == true)
             {
                 // Convert the picker value to a string in preparation for storage
                 string statusString = status.ToString();
 
                 // Add the Course to the database
-                App.PlannerRepo.AddCourse(termID, courseName, start, end, notify, statusString, instName, instPhone, instEmail, notes);
+                App.PlannerRepo.AddCourse(termID, courseName, start, end, notify, statusString, instName, instPhone, instEmail, notes, grade);
 
                 // Set notifications if enabled
                 if (notify == true)

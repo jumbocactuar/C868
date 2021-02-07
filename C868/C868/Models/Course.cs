@@ -35,5 +35,8 @@ namespace C868.Models
 
         [MaxLength(250)]
         public string Notes { get; set; }
+
+        [MaxLength(10)]
+        public string Grade { get; set; }
     }
 }

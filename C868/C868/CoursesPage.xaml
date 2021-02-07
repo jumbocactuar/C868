@@ -50,6 +50,14 @@
                             Style="{StaticResource editDeleteButtonStyle}"
                             Text="DELETE TERM" />
                 </StackLayout>
+
+                <StackLayout>
+                    <Button x:Name="gradeReportButton"
+                            Clicked="GradeReportButton_Clicked"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource editDeleteButtonStyle}"
+                            Text="VIEW GRADE REPORT" />
+                </StackLayout>
             </StackLayout>
 
             <StackLayout Padding="20, 0, 20, 0"

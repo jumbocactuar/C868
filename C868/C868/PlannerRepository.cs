@@ -33,9 +33,9 @@ namespace C868
             cxn.Insert(new Assessment { CourseID = courseID, Name = name, Type = type, Start = start, End = end, NotificationsEnabled = notify });
         }
 
-        public void AddCourse(int termID, string courseName, DateTime start, DateTime end, bool notify, string status, string instName, string instPhone, string instEmail, string notes)
+        public void AddCourse(int termID, string courseName, DateTime start, DateTime end, bool notify, string status, string instName, string instPhone, string instEmail, string notes, string grade)
         {
-            cxn.Insert(new Course { TermID = termID, CourseName = courseName, Start = start, End = end, NotificationsEnabled = notify, Status = status, InstName = instName, InstPhone = instPhone, InstEmail = instEmail, Notes = notes });
+            cxn.Insert(new Course { TermID = termID, CourseName = courseName, Start = start, End = end, NotificationsEnabled = notify, Status = status, InstName = instName, InstPhone = instPhone, InstEmail = instEmail, Notes = notes, Grade = grade });
         }
 
         public void AddTerm(string title, DateTime start, DateTime end)
@@ -182,9 +182,9 @@ namespace C868
             cxn.Query<Assessment>("UPDATE assessments SET Name = ?, Type = ?, Start = ?, End = ?, NotificationsEnabled = ? WHERE AssessmentID = ?", name, type, start, end, notify, id);
         }
 
-        public void UpdateCourse(int id, string courseName, DateTime start, DateTime end, bool notify, string status, string instName, string instPhone, string instEmail, string notes)
+        public void UpdateCourse(int id, string courseName, DateTime start, DateTime end, bool notify, string status, string instName, string instPhone, string instEmail, string notes, string grade)
         {
-            cxn.Query<Course>("UPDATE courses SET CourseName = ?, Start = ?, End = ?, NotificationsEnabled = ?, Status = ?, InstName = ?, InstPhone = ?, InstEmail = ?, Notes = ? WHERE CourseID = ?", courseName, start, end, notify, status, instName, instPhone, instEmail, notes, id);
+            cxn.Query<Course>("UPDATE courses SET CourseName = ?, Start = ?, End = ?, NotificationsEnabled = ?, Status = ?, InstName = ?, InstPhone = ?, InstEmail = ?, Notes = ?, Grade = ? WHERE CourseID = ?", courseName, start, end, notify, status, instName, instPhone, instEmail, notes, grade, id);
         }
 
         public void UpdateTerm(int id, string title, DateTime start, DateTime end)

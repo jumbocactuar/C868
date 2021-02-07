@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C868.GradeReportPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="columnLabelStyle">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Lato-Bold" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style TargetType="Label" x:Key="contentLabelStyle">
+                <Setter Property="FontFamily" Value="Lato-Regular" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <StackLayout>
+        <StackLayout>
+            <Label Style ="{StaticResource headerStyle}" />
+        </StackLayout>
+        
+        <StackLayout Padding="20, 0, 20, 10">
+            <Label Style="{StaticResource pageLabelStyle}"
+                   Text="GRADE REPORT" />
+
+            <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="{Binding Title, StringFormat='Term: {0}'}" />
+
+            <Label x:Name="reportDateLabel"
+                   Margin="0, 0, 0, 15"
+                   Style="{StaticResource fieldLabelStyle}" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.Margin>0, 10, 0, 0</Grid.Margin>
+
+                <Label Grid.ColumnSpan="3"
+                       Grid.Row="0"
+                       Style="{StaticResource columnLabelStyle}"
+                       Text="COURSE" />
+
+                <Label Grid.Column="3"
+                       Grid.Row="0"
+                       Style="{StaticResource columnLabelStyle}"
+                       Text="GRADE" />
+            </Grid>
+
+            <ListView x:Name="reportList"
+                      RowHeight="50"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="50">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.ColumnSpacing>0</Grid.ColumnSpacing>
+
+                                <Label Grid.ColumnSpan="3"
+                                       Grid.Row="0"
+                                       Style="{StaticResource contentLabelStyle}"
+                                       Text="{Binding CourseName}" />
+
+                                <Label Grid.Column="3"
+                                       Grid.Row="0"
+                                       Padding="20, 0, 20, 0"
+                                       Style="{StaticResource contentLabelStyle}"
+                                       Text="{Binding Grade}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button x:Name="reportExitButton"
+                    Clicked="ReportExitButton_Clicked"
+                    Style="{StaticResource cancelButtonStyle}"
+                    Text="EXIT" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

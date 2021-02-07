@@ -87,5 +87,10 @@ namespace C868
                 }
             }
         }
+
+        private async void GradeReportButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new GradeReportPage(App.PlannerRepo.GetSelectedTerm()));
+        }
     }
 }

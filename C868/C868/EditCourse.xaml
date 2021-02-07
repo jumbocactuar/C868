@@ -74,7 +74,13 @@
 
                 <Editor x:Name="editCourseNotesEditor"
                         Placeholder="Max. 250 characters"
-                        Text="{Binding Notes}}" />
+                        Text="{Binding Notes}" />
+
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="GRADE" />
+
+                <Entry x:Name="editCourseGradeEntry"
+                       Text="{Binding Grade}" />
 
                 <Button x:Name="editCourseSaveButton"
                     Style="{StaticResource addButtonStyle}"

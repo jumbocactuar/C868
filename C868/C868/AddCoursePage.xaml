@@ -68,6 +68,11 @@
                 <Editor x:Name="addCourseNotesEditor"
                         Placeholder="Max. 250 characters" />
 
+                <Label Style="{StaticResource fieldLabelStyle}"
+                       Text="GRADE" />
+
+                <Entry x:Name="addCourseGradeEntry" />
+
                 <Button x:Name="addCourseSaveButton"
                     Style="{StaticResource addButtonStyle}"
                     Text="SAVE"

@@ -9,7 +9,8 @@
                  VerticalOptions="CenterAndExpand">
         <Label Text="USER NAME" />
 
-        <Entry x:Name="userNameEntry"/>
+        <Entry x:Name="userNameEntry"
+               Margin="0, 0, 0, 4" />
 
         <Label Text="PASSWORD" />
 
@@ -18,6 +19,7 @@
 
         <Button x:Name="logInButton"
                 Clicked="LogInButton_Clicked"
+                Margin="0, 7, 0, 0"
                 Style="{StaticResource addButtonStyle}"
                 Text="LOG IN" />
     </StackLayout>
