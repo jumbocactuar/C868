@@ -58,6 +58,22 @@ namespace C868
             }
         }
 
+        private async void SearchButton_Clicked(object sender, EventArgs e)
+        {
+            ObservableCollection<Course> courseList = App.PlannerRepo.GenerateSearchResults(courseSearchEntry.Text);
+
+            if (courseList.Count > 0)
+            {
+                await Navigation.PushAsync(new SearchResultsPage(courseList));
+            }
+
+            else
+            {
+                await DisplayAlert("Alert", "No results found", "OK");
+            }
+
+        }
+
         private async void OnAddTermButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddTermPage());

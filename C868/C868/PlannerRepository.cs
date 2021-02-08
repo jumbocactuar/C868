@@ -63,6 +63,22 @@ namespace C868
             cxn.Query<Term>("DELETE FROM terms WHERE TermID = ?", id);
         }
 
+        public ObservableCollection<Course> GenerateSearchResults(string argument)
+        {
+            ObservableCollection<Course> allCourses = GetAllCourses();
+            ObservableCollection<Course> filteredCourses = new ObservableCollection<Course>();
+
+            foreach (Course course in allCourses)
+            {
+                if (course.CourseName.Contains(argument) == true) // Does this need to be tostring?
+                {
+                    filteredCourses.Add(course);
+                }
+            }
+
+            return filteredCourses;
+        }
+
         public ObservableCollection<Assessment> GetAllAssessments()
         {
             var filteredList = cxn.Query<Assessment>("SELECT * FROM assessments");

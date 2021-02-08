@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:local="clr-namespace:C868;assembly=C868"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C868.TermsPage"
+             Style="{StaticResource pageBG}"
              Title="Terms"
              NavigationPage.HasNavigationBar="False">
 
@@ -15,6 +17,22 @@
 
     <StackLayout>
         <Label Style ="{StaticResource headerStyle}" />
+
+        <StackLayout BackgroundColor="#750d7e"
+                     Orientation="Horizontal"
+                     Padding="1">
+            <local:CustomEntry x:Name="courseSearchEntry"
+                   HorizontalOptions="StartAndExpand"
+                   Placeholder="Enter a course name                  "
+                   PlaceholderColor="#333" />
+
+            <Button x:Name="searchButton"
+                    BackgroundColor ="#750d7e"
+                    Clicked="SearchButton_Clicked"
+                    FontFamily="Lato-Regular"
+                    Text="SEARCH COURSES"
+                    TextColor="#fff" />
+        </StackLayout>
 
         <Grid>
             <Grid.RowDefinitions>
