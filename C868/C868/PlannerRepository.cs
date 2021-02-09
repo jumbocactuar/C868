@@ -70,7 +70,11 @@ namespace C868
 
             foreach (Course course in allCourses)
             {
-                if (course.CourseName.Contains(argument) == true) // Does this need to be tostring?
+                // Put CourseName and argument into comparable forms
+                string lowerName = course.CourseName.ToLower();
+                string lowerArg = argument.ToLower();
+
+                if (lowerName.Contains(lowerArg) == true)
                 {
                     filteredCourses.Add(course);
                 }
@@ -426,6 +430,69 @@ namespace C868
             }
 
             return result;
+        }
+    }
+
+    public class CourseDeletionException : Exception
+    {
+        public CourseDeletionException()
+            : base("This course cannot be deleted because it is associated with one or more assessments.")
+        {
+
+        }
+
+        public CourseDeletionException(string messageValue)
+            : base(messageValue)
+        {
+
+        }
+
+        public CourseDeletionException(string messageValue, Exception inner)
+            : base(messageValue, inner)
+        {
+
+        }
+    }
+
+    public class TermDeletionException : Exception
+    {
+        public TermDeletionException()
+            : base("This term cannot be deleted because it is associated with one or more courses.")
+        {
+
+        }
+
+        public TermDeletionException(string messageValue)
+            : base(messageValue)
+        {
+
+        }
+
+        public TermDeletionException(string messageValue, Exception inner)
+            : base(messageValue, inner)
+        {
+
+        }
+    }
+
+    public class InvalidCredentialsException : Exception
+    {
+        public InvalidCredentialsException()
+            : base("Invalid user name or password")
+        {
+
+        }
+
+        public InvalidCredentialsException(string messageValue)
+            : base(messageValue)
+        {
+
+        }
+
+        public InvalidCredentialsException(string messageValue, Exception inner)
+            : base(messageValue, inner)
+        {
+
         }
     }
 }

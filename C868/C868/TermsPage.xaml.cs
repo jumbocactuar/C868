@@ -60,16 +60,24 @@ namespace C868
 
         private async void SearchButton_Clicked(object sender, EventArgs e)
         {
-            ObservableCollection<Course> courseList = App.PlannerRepo.GenerateSearchResults(courseSearchEntry.Text);
-
-            if (courseList.Count > 0)
+            if (courseSearchEntry.Text == null || courseSearchEntry.Text == "")
             {
-                await Navigation.PushAsync(new SearchResultsPage(courseList));
+                await DisplayAlert("Alert", "Please enter a search term.", "OK");
             }
 
             else
             {
-                await DisplayAlert("Alert", "No results found", "OK");
+                ObservableCollection<Course> courseList = App.PlannerRepo.GenerateSearchResults(courseSearchEntry.Text);
+
+                if (courseList.Count > 0)
+                {
+                    await Navigation.PushAsync(new SearchResultsPage(courseList));
+                }
+
+                else
+                {
+                    await DisplayAlert("Alert", "No results found.", "OK");
+                }
             }
 
         }

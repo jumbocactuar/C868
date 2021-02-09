@@ -33,14 +33,22 @@ namespace C868
 
         private async void LogInButton_Clicked(object sender, EventArgs e)
         {
-            bool result = App.PlannerRepo.LoginChecker(userNameEntry.Text, passwordEntry.Text);
-
-            if (result == true)
+            try
             {
-                await Navigation.PushAsync(new TermsPage());
+                bool result = App.PlannerRepo.LoginChecker(userNameEntry.Text, passwordEntry.Text);
+
+                if (result == true)
+                {
+                    await Navigation.PushAsync(new TermsPage());
+                }
+
+                else
+                {
+                    throw new InvalidCredentialsException();
+                }
             }
 
-            else
+            catch (InvalidCredentialsException)
             {
                 await DisplayAlert("Alert", "Invalid user name or password", "OK");
             }

@@ -45,7 +45,7 @@
                 <Setter Property="FontFamily" Value="Lato-Regular" />
                 <Setter Property="FontSize" Value="22" />
                 <Setter Property="Padding" Value="10, 10, 10, 10" />
-                <Setter Property="Text" Value="STUDENT PLANNER" />
+                <Setter Property="Text" Value="SEMU STUDENT PLANNER" />
                 <Setter Property="TextColor" Value="#fff" />
                 <Setter Property="VerticalOptions" Value="Start" />
             </Style>

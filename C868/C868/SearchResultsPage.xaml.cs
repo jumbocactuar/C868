@@ -23,9 +23,12 @@ namespace C868
             courseSearchList.ItemsSource = courses;
         }
 
-        private void CourseSearchList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void CourseSearchList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            var item = (Course)e.SelectedItem;
+            App.PlannerRepo.SelectedCourse = item.CourseID;
 
+            await Navigation.PushAsync(new AssessmentsPage(item));
         }
     }
 }

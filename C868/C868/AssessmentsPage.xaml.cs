@@ -93,24 +93,32 @@ namespace C868
             {
                 ObservableCollection<Assessment> deleteAssessments = App.PlannerRepo.GetAssessmentsList();
 
-                if (deleteAssessments.Count > 0)
+                try
                 {
-                    await DisplayAlert("Unable to delete", "This course cannot be deleted because it is associated with one or more assessments.", "OK");
+                    if (deleteAssessments.Count > 0)
+                    {
+                        throw new CourseDeletionException();
+                    }
+
+                    else
+                    {
+                        int id = App.PlannerRepo.SelectedCourse;
+                        int notifStartID = id + 1000;
+                        int notifEndID = id + 2000;
+
+                        // Delete the course and cancel its notifications
+                        App.PlannerRepo.DeleteCourse(id);
+
+                        CrossLocalNotifications.Current.Cancel(notifStartID);
+                        CrossLocalNotifications.Current.Cancel(notifEndID);
+
+                        await Navigation.PopAsync();
+                    }
                 }
 
-                else
+                catch (CourseDeletionException)
                 {
-                    int id = App.PlannerRepo.SelectedCourse;
-                    int notifStartID = id + 1000;
-                    int notifEndID = id + 2000;
-
-                    // Delete the course and cancel its notifications
-                    App.PlannerRepo.DeleteCourse(id);
-
-                    CrossLocalNotifications.Current.Cancel(notifStartID);
-                    CrossLocalNotifications.Current.Cancel(notifEndID);
-
-                    await Navigation.PopAsync();
+                    await DisplayAlert("Unable to delete", "This course cannot be deleted because it is associated with one or more assessments.", "OK");
                 }
             }
         }

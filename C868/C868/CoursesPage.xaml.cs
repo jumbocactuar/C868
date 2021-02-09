@@ -72,18 +72,26 @@ namespace C868
             {
                 ObservableCollection<Course> deleteCourses = App.PlannerRepo.GetCoursesList();
 
-                if (deleteCourses.Count > 0)
+                try
                 {
-                    await DisplayAlert("Unable to delete", "This term cannot be deleted because it is associated with one or more courses.", "OK");
+                    if (deleteCourses.Count > 0)
+                    {
+                        throw new TermDeletionException();
+                    }
+
+                    else
+                    {
+                        int id = App.PlannerRepo.SelectedTerm;
+
+                        App.PlannerRepo.DeleteTerm(id);
+
+                        await Navigation.PopAsync();
+                    }
                 }
 
-                else
+                catch (TermDeletionException)
                 {
-                    int id = App.PlannerRepo.SelectedTerm;
-
-                    App.PlannerRepo.DeleteTerm(id);
-
-                    await Navigation.PopAsync();
+                    await DisplayAlert("Unable to delete", "This term cannot be deleted because it is associated with one or more courses.", "OK");
                 }
             }
         }

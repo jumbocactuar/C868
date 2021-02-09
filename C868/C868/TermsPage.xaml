@@ -3,9 +3,9 @@
              xmlns:local="clr-namespace:C868;assembly=C868"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C868.TermsPage"
+             NavigationPage.HasNavigationBar="False"
              Style="{StaticResource pageBG}"
-             Title="Terms"
-             NavigationPage.HasNavigationBar="False">
+             Title="Terms">
 
     <ContentPage.Resources>
         <ResourceDictionary>

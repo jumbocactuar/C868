@@ -4,23 +4,53 @@
              x:Class="C868.LoginPage"
              NavigationPage.HasNavigationBar="False"
              Style="{StaticResource pageBG}">
-    
-    <StackLayout Padding="40, 0, 40, 0"
-                 VerticalOptions="CenterAndExpand">
-        <Label Text="USER NAME" />
 
-        <Entry x:Name="userNameEntry"
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="heroLabel">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Lato-Bold" />
+                <Setter Property="FontSize" Value="40" />
+                <Setter Property="TextColor" Value="#333" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource headerStyle}" />
+        </StackLayout>
+
+        <StackLayout Padding="40, 20, 40, 0">
+            <Label Style="{StaticResource heroLabel}"
+                   Text="SOUTH" />
+
+            <Label Style="{StaticResource heroLabel}"
+                   Text="EASTERN" />
+
+            <Label Style="{StaticResource heroLabel}"
+                   Text="MILWAUKEE" />
+
+            <Label Style="{StaticResource heroLabel}"
+                   Text="UNIVERSITY" />
+        </StackLayout>
+        
+        <StackLayout Padding="40, 30, 40, 0">
+            <Label Text="USER NAME" />
+
+            <Entry x:Name="userNameEntry"
                Margin="0, 0, 0, 4" />
 
-        <Label Text="PASSWORD" />
+            <Label Text="PASSWORD" />
 
-        <Entry x:Name="passwordEntry"
+            <Entry x:Name="passwordEntry"
                IsPassword="True"/>
 
-        <Button x:Name="logInButton"
+            <Button x:Name="logInButton"
                 Clicked="LogInButton_Clicked"
                 Margin="0, 7, 0, 0"
                 Style="{StaticResource addButtonStyle}"
                 Text="LOG IN" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

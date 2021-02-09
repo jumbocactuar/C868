@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C868.GradeReportPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource pageBG}">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label" x:Key="columnLabelStyle">
@@ -16,7 +18,6 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
     
     <StackLayout>
         <StackLayout>
