@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C868.EditFlashCardPage"
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource pageBG}">
+
+    <StackLayout>
+        <Label Style ="{StaticResource headerStyle}" />
+
+        <StackLayout Padding="20, 0, 20, 0">
+            <Label Style="{StaticResource pageLabelStyle}"
+                   Padding="0, 10, 0, 0"
+                   Text="VIEW/EDIT FLASH CARD" />
+
+            <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="QUESTION" />
+
+            <Editor x:Name="editFlashCardQuestionEditor"
+                    Placeholder="Max. 250 characters"
+                    Text="{Binding Question}"/>
+
+            <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="ANSWER" />
+
+            <Editor x:Name="editFlashCardAnswerEditor"
+                    Placeholder="Max. 250 characters"
+                    Text="{Binding Answer}"/>
+
+            <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="CONFIDENCE" />
+
+            <Picker x:Name="editFlashCardConfidencePicker"
+                    SelectedItem="{Binding Confidence}">
+                <Picker.Items>
+                    <x:String>High</x:String>
+                    <x:String>Moderate</x:String>
+                    <x:String>Low</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Button x:Name="editFlashCardSaveButton"
+                    Style="{StaticResource addButtonStyle}"
+                    Text="SAVE"
+                    Margin="0, 15, 0, 0"
+                    Clicked="EditFlashCardSaveButton_Clicked"/>
+
+            <Button Style="{StaticResource cancelButtonStyle}"
+                    Margin="0, 7, 0, 0"
+                    Clicked="CancelButton_Clicked" />
+
+            <Button Style="{StaticResource cancelButtonStyle}"
+                    Margin="0, 7, 0, 0"
+                    Clicked="DeleteButton_Clicked"
+                    Text="DELETE FLASH CARD" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

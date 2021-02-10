@@ -57,31 +57,15 @@ namespace C868
             var item = (Assessment)e.SelectedItem;
             App.PlannerRepo.SelectedAssessment = item.AssessmentID;
 
-            await Navigation.PushAsync(new AssessmentDetailPage(item));
-        }
-
-        private async void EditCourseButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new EditCourse(App.PlannerRepo.GetSelectedCourse()));
-        }
-
-        private async void ShareNotesButton_Clicked(object sender, EventArgs e)
-        {
-            var course = App.PlannerRepo.GetSelectedCourse();
-
-            string notes = course.Notes;
-
-            // If notes is null  or empty, add placeholder text so the share request has something to send
-            if (notes == null || notes == "")
+            if (item.Type == "Objective")
             {
-                notes = "none";
+                await Navigation.PushAsync(new ObjectiveAssessmentPage(item));
             }
 
-            await Share.RequestAsync(new ShareTextRequest
+            else
             {
-                Text = notes,
-                Title = "Share Notes"
-            });
+                await Navigation.PushAsync(new PerformanceAssessmentPage(item));
+            }
         }
 
         private async void DeleteCourseButton_Clicked(object sender, EventArgs e)
@@ -121,6 +105,30 @@ namespace C868
                     await DisplayAlert("Unable to delete", "This course cannot be deleted because it is associated with one or more assessments.", "OK");
                 }
             }
+        }
+
+        private async void EditCourseButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditCourse(App.PlannerRepo.GetSelectedCourse()));
+        }
+
+        private async void ShareNotesButton_Clicked(object sender, EventArgs e)
+        {
+            var course = App.PlannerRepo.GetSelectedCourse();
+
+            string notes = course.Notes;
+
+            // If notes is null  or empty, add placeholder text so the share request has something to send
+            if (notes == null || notes == "")
+            {
+                notes = "none";
+            }
+
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = notes,
+                Title = "Share Notes"
+            });
         }
     }
 }

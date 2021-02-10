@@ -19,6 +19,10 @@ namespace C868
 
         public int SelectedAssessment;
 
+        public int SelectedOA;
+
+        public int SelectedPA;
+
         public PlannerRepository(string dbPath)
         {
             cxn = new SQLiteConnection(dbPath);
@@ -26,6 +30,8 @@ namespace C868
             cxn.CreateTable<Term>();
             cxn.CreateTable<Course>();
             cxn.CreateTable<Assessment>();
+            cxn.CreateTable<FlashCard>();
+            cxn.CreateTable<Requirement>();
         }
 
         public void AddAssessment(int courseID, string name, string type, DateTime start, DateTime end, bool notify)
@@ -36,6 +42,16 @@ namespace C868
         public void AddCourse(int termID, string courseName, DateTime start, DateTime end, bool notify, string status, string instName, string instPhone, string instEmail, string notes, string grade)
         {
             cxn.Insert(new Course { TermID = termID, CourseName = courseName, Start = start, End = end, NotificationsEnabled = notify, Status = status, InstName = instName, InstPhone = instPhone, InstEmail = instEmail, Notes = notes, Grade = grade });
+        }
+
+        public void AddFlashCard(int assessmentID, string question, string answer, string confidence)
+        {
+            cxn.Insert(new FlashCard { AssessmentID = assessmentID, Question = question, Answer = answer, Confidence = confidence });
+        }
+
+        public void AddRequirement(int assessmentID, string req, string notes, bool satisfied)
+        {
+            cxn.Insert(new Requirement { AssessmentID = assessmentID, Req = req, Notes = notes, Satisfied = satisfied });
         }
 
         public void AddTerm(string title, DateTime start, DateTime end)
@@ -56,6 +72,16 @@ namespace C868
         public void DeleteCourse(int id)
         {
             cxn.Query<Course>("DELETE FROM courses WHERE CourseID = ?", id);
+        }
+
+        public void DeleteFlashCard(int id)
+        {
+            cxn.Query<FlashCard>("DELETE FROM flashcards WHERE CardID = ?", id);
+        }
+
+        public void DeleteRequirement(int id)
+        {
+            cxn.Query<Requirement>("DELETE FROM requirements WHERE ReqID = ?", id);
         }
 
         public void DeleteTerm(int id)
@@ -150,18 +176,36 @@ namespace C868
             return filteredCollection;
         }
 
-        public ObservableCollection<Term> GetTermsList()
+        public ObservableCollection<FlashCard> GetFlashCardList()
         {
-            var temp = cxn.Table<Term>().ToList();
+            int oaID = App.PlannerRepo.SelectedAssessment;
 
-            ObservableCollection<Term> collection = new ObservableCollection<Term>();
+            var filteredList = cxn.Query<FlashCard>("SELECT * FROM flashcards WHERE AssessmentID = ?", oaID);
 
-            foreach (Term term in temp)
+            ObservableCollection<FlashCard> filteredCollection = new ObservableCollection<FlashCard>();
+
+            foreach (FlashCard card in filteredList)
             {
-                collection.Add(term);
+                filteredCollection.Add(card);
             }
 
-            return collection;
+            return filteredCollection;
+        }
+
+        public ObservableCollection<Requirement> GetRequirementsList()
+        {
+            int paID = App.PlannerRepo.SelectedAssessment;
+
+            var filteredList = cxn.Query<Requirement>("SELECT * FROM requirements WHERE AssessmentID = ?", paID);
+
+            ObservableCollection<Requirement> filteredCollection = new ObservableCollection<Requirement>();
+
+            foreach (Requirement req in filteredList)
+            {
+                filteredCollection.Add(req);
+            }
+
+            return filteredCollection;
         }
 
         public Assessment GetSelectedAssessment()
@@ -197,6 +241,20 @@ namespace C868
             return selectedTerm;
         }
 
+        public ObservableCollection<Term> GetTermsList()
+        {
+            var temp = cxn.Table<Term>().ToList();
+
+            ObservableCollection<Term> collection = new ObservableCollection<Term>();
+
+            foreach (Term term in temp)
+            {
+                collection.Add(term);
+            }
+
+            return collection;
+        }
+
         public void UpdateAssessment(int id, string name, string type, DateTime start, DateTime end, bool notify)
         {
             cxn.Query<Assessment>("UPDATE assessments SET Name = ?, Type = ?, Start = ?, End = ?, NotificationsEnabled = ? WHERE AssessmentID = ?", name, type, start, end, notify, id);
@@ -205,6 +263,16 @@ namespace C868
         public void UpdateCourse(int id, string courseName, DateTime start, DateTime end, bool notify, string status, string instName, string instPhone, string instEmail, string notes, string grade)
         {
             cxn.Query<Course>("UPDATE courses SET CourseName = ?, Start = ?, End = ?, NotificationsEnabled = ?, Status = ?, InstName = ?, InstPhone = ?, InstEmail = ?, Notes = ?, Grade = ? WHERE CourseID = ?", courseName, start, end, notify, status, instName, instPhone, instEmail, notes, grade, id);
+        }
+
+        public void UpdateFlashCard(int id, string question, string answer, string confidence)
+        {
+            cxn.Query<FlashCard>("UPDATE flashcards SET Question = ?, Answer = ?, Confidence = ? WHERE CardID = ?", question, answer, confidence, id);
+        }
+
+        public void UpdateRequirement(int id, string req, string notes, bool satisfied)
+        {
+            cxn.Query<Requirement>("UPDATE requirements SET Req = ?, Notes = ?, Satisfied = ? WHERE ReqID = ?", req, notes, satisfied, id);
         }
 
         public void UpdateTerm(int id, string title, DateTime start, DateTime end)
