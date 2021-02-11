@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="C868.EditFlashCardPage"
+             x:Class="C868.EditRequirementPage"
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
@@ -10,39 +10,33 @@
         <StackLayout Padding="20, 0, 20, 0">
             <Label Style="{StaticResource pageLabelStyle}"
                    Padding="0, 10, 0, 0"
-                   Text="VIEW/EDIT FLASH CARD" />
+                   Text="VIEW/EDIT REQUIREMENT" />
 
             <Label Style="{StaticResource fieldLabelStyle}"
-                   Text="QUESTION" />
+                   Text="REQUIREMENT" />
 
-            <Editor x:Name="editFlashCardQuestionEditor"
+            <Editor x:Name="editRequirementRequirementEditor"
                     Placeholder="Max. 250 characters"
-                    Text="{Binding Question}"/>
+                    Text="{Binding Req}" />
 
             <Label Style="{StaticResource fieldLabelStyle}"
-                   Text="ANSWER" />
+                   Text="NOTES" />
 
-            <Editor x:Name="editFlashCardAnswerEditor"
+            <Editor x:Name="editRequirementNotesEditor"
                     Placeholder="Max. 250 characters"
-                    Text="{Binding Answer}"/>
+                    Text="{Binding Notes}" />
 
             <Label Style="{StaticResource fieldLabelStyle}"
-                   Text="CONFIDENCE" />
+                   Text="REQUIREMENT SATISFIED?" />
 
-            <Picker x:Name="editFlashCardConfidencePicker"
-                    SelectedItem="{Binding Confidence}">
-                <Picker.Items>
-                    <x:String>High</x:String>
-                    <x:String>Moderate</x:String>
-                    <x:String>Low</x:String>
-                </Picker.Items>
-            </Picker>
+            <CheckBox x:Name="editRequirementSatisfiedCheckbox"
+                      IsChecked="{Binding Satisfied}" />
 
-            <Button x:Name="editFlashCardSaveButton"
+            <Button x:Name="editRequirementSaveButton"
                     Style="{StaticResource addButtonStyle}"
                     Text="SAVE"
                     Margin="0, 15, 0, 0"
-                    Clicked="EditFlashCardSaveButton_Clicked"/>
+                    Clicked="EditRequirementSaveButton_Clicked"/>
 
             <Button Style="{StaticResource cancelButtonStyle}"
                     Margin="0, 7, 0, 0"
@@ -51,7 +45,7 @@
             <Button Style="{StaticResource cancelButtonStyle}"
                     Margin="0, 7, 0, 0"
                     Clicked="DeleteButton_Clicked"
-                    Text="DELETE FLASH CARD" />
+                    Text="DELETE REQUIREMENT" />
         </StackLayout>
     </StackLayout>
 </ContentPage>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="C868.EditTermPage"
+             x:Class="C868.AddRequirementPage"
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
@@ -10,36 +10,34 @@
         <StackLayout Padding="20, 0, 20, 0">
             <Label Style="{StaticResource pageLabelStyle}"
                    Padding="0, 10, 0, 0"
-                   Text="EDIT TERM" />
+                   Text="ADD REQUIREMENT" />
 
             <Label Style="{StaticResource fieldLabelStyle}"
-                   Text="TITLE" />
+                   Text="REQUIREMENT" />
 
-            <Entry x:Name="editTermTitle"
-                   Text="{Binding Title}" />
-
-            <Label Style="{StaticResource fieldLabelStyle}"
-                   Text="START DATE" />
-
-            <DatePicker x:Name="editTermStart"
-                        Date="{Binding Start}" />
+            <Editor x:Name="addRequirementRequirementEditor"
+                    Placeholder="Max. 250 characters"/>
 
             <Label Style="{StaticResource fieldLabelStyle}"
-                   Text="END DATE" />
+                   Text="NOTES" />
 
-            <DatePicker x:Name="editTermEnd"
-                        Date="{Binding End}" />
+            <Editor x:Name="addRequirementNotesEditor"
+                    Placeholder="Max. 250 characters"/>
 
-            <Button x:Name="editTermSaveButton"
+            <Label Style="{StaticResource fieldLabelStyle}"
+                   Text="REQUIREMENT SATISFIED?" />
+
+            <CheckBox x:Name="addRequirementSatisfiedCheckbox" />
+
+            <Button x:Name="addRequirementSaveButton"
                     Style="{StaticResource addButtonStyle}"
                     Text="SAVE"
                     Margin="0, 15, 0, 0"
-                    Clicked="EditTermSaveButton_Clicked"/>
+                    Clicked="AddRequirementSaveButton_Clicked"/>
 
-            <Button x:Name="editTermCancelButton"
-                    Style="{StaticResource cancelButtonStyle}"
+            <Button Style="{StaticResource cancelButtonStyle}"
                     Margin="0, 7, 0, 0"
-                    Clicked="EditTermCancelButton_Clicked" />
+                    Clicked="CancelButton_Clicked" />
         </StackLayout>
     </StackLayout>
 </ContentPage>

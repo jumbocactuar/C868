@@ -1,12 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="C868.PerformanceAssessmentPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="C868.PerformanceAssessmentPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <Label Style ="{StaticResource headerStyle}" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.RowSpacing>0</Grid.RowSpacing>
+
+            <StackLayout Padding="20"
+                         Grid.Row="0">
+                <Label x:Name="assessmentNameLabel"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       Style="{StaticResource pageLabelStyle}"
+                       Text="{Binding Name}" />
+                <Label x:Name="assessmentTypeLabel"
+                       HorizontalOptions="Center"
+                       Padding="0"
+                       Style="{StaticResource pageLabelStyle}"
+                       Text="{Binding Type, StringFormat='{0} Assessment'}" />
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="assessmentStartLabel"
+                           HorizontalOptions="CenterAndExpand"
+                           Style="{StaticResource pageLabelStyle}"
+                           Text="{Binding Start, StringFormat='Start: {0:d}'}" />
+                    <Label x:Name="assessmentEndLabel"
+                           HorizontalOptions="CenterAndExpand"
+                           Style="{StaticResource pageLabelStyle}"
+                           Text="{Binding End, StringFormat='End: {0:d}'}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="EditAssessmentButton"
+                            Clicked="EditAssessmentButton_Clicked"
+                            Style="{StaticResource editDeleteButtonStyle}"
+                            Text="EDIT ASSESSMENT" />
+                    <Button x:Name="deleteAssessmentButton"
+                            Clicked="DeleteAssessmentButton_Clicked"
+                            Style="{StaticResource editDeleteButtonStyle}"
+                            Text="DELETE ASSESSMENT" />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Padding="20, 0, 20, 0"
+                         Grid.Row="1">
+                <Label Style="{StaticResource pageLabelStyle}"
+                   Padding="0, 10, 0, 10"
+                   Text="REQUIREMENTS CHECKLIST" />
+            </StackLayout>
+
+            <ListView x:Name="reqsList"
+                      Grid.Row="2"
+                      ItemSelected="ReqsList_ItemSelected"
+                      RowHeight="100"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="50">
+                            <Grid Padding="20, 0, 20, 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.RowSpacing>0</Grid.RowSpacing>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.ColumnSpacing>0</Grid.ColumnSpacing>
+
+                                <CheckBox BackgroundColor="#af4db5"
+                                          Grid.Column="0"
+                                          Grid.Row="0"
+                                          IsChecked="{Binding Satisfied}"
+                                          IsEnabled="False" />
+
+                                <Label Grid.Column="1"
+                                       Grid.Row="0"
+                                       Padding="20, 10, 20, 10"
+                                       Style="{StaticResource unitLabelStyle}"
+                                       Text="{Binding Req}" />
+
+                                <Label BackgroundColor="Transparent"
+                                       Grid.ColumnSpan="2"
+                                       Grid.Row="1"
+                                       HeightRequest="10" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button x:Name="addReqButton"
+                    Clicked="AddReqButton_Clicked"
+                    Grid.Row="3"
+                    IsEnabled="true"
+                    Style="{StaticResource addButtonStyle}"
+                    Text="ADD REQUIREMENT" />
+        </Grid>
+    </StackLayout>
 </ContentPage>

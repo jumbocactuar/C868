@@ -25,7 +25,7 @@ namespace C868
             {
                 App.PlannerRepo.AddUser("admin", "test");
                 App.PlannerRepo.AddTerm("Term 1 - Winter 2021", new DateTime(2021, 1, 1, 0, 0, 0), new DateTime(2021, 6, 30, 0, 0, 0));
-                App.PlannerRepo.AddCourse(1, "R101 - Intro to Women's Studies", new DateTime(2021, 1, 1, 0, 0, 0), new DateTime(2021, 2, 15, 0, 0, 0), false, "In progress", "Cody Burkholz", "206-353-8514", "cburk89@wgu.edu", "Study at least one chapter per day", "");
+                App.PlannerRepo.AddCourse(1, "R101 - Intro to Women's Studies", new DateTime(2021, 1, 1, 0, 0, 0), new DateTime(2021, 2, 15, 0, 0, 0), false, "In progress", "Cody Burkholz", "206-353-8514", "cburk89@wgu.edu", "Study at least one chapter per day", "3.7");
                 App.PlannerRepo.AddAssessment(1, "R101 OA", "Objective", new DateTime(2021, 2, 1, 0, 0, 0), new DateTime(2021, 2, 7, 0, 0, 0), false);
                 App.PlannerRepo.AddAssessment(1, "R101 PA", "Performance", new DateTime(2021, 2, 8, 0, 0, 0), new DateTime(2021, 2, 15, 0, 0, 0), false);
             }
