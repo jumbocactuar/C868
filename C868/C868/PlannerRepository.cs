@@ -445,22 +445,21 @@ namespace C868
                 // If both the user name and password match those of a user in the database, mark it as valid
                 foreach (User user in userList)
                 {
-                    CurrentUser = user;
-
                     if (user.UserName == userName)
                     {
                         userNameOK = true;
-                    }
 
-                    if (user.Password == password)
-                    {
-                        passwordOK = true;
-                    }
-                }
+                        if (user.Password == password)
+                        {
+                            passwordOK = true;
+                        }
 
-                if (userNameOK == true && passwordOK == true)
-                {
-                    return result = true;
+                        if (userNameOK == true && passwordOK == true)
+                        {
+                            CurrentUser = user;
+                            return result = true;
+                        }
+                    }
                 }
             }
 

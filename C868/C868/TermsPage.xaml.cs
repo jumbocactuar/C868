@@ -25,6 +25,8 @@ namespace C868
         {
             base.OnAppearing();
 
+            BindingContext = App.PlannerRepo.CurrentUser;
+
             termsList.ItemsSource = null;
             ObservableCollection<Term> terms = App.PlannerRepo.GetTermsList();
             termsList.ItemsSource = terms;
