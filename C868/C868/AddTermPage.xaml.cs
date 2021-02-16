@@ -20,6 +20,7 @@ namespace C868
         public async void OnSaveButton_Clicked(object sender, EventArgs e)
         {
             // Put the form inputs into forms acceptable by the AddTerm method
+            int userID = App.PlannerRepo.CurrentUser.UserID;
             string title = addTermNameEntry.Text;
             DateTime start = addTermStartDatePicker.Date;
             DateTime end = addTermEndDatePicker.Date;
@@ -42,7 +43,7 @@ namespace C868
             if (titleResult == true && dateResult == true)
             {
                 // Add the term to the database
-                App.PlannerRepo.AddTerm(title, start, end);
+                App.PlannerRepo.AddTerm(userID, title, start, end);
 
                 // Return to the Terms page
                 await Navigation.PopAsync();

@@ -13,6 +13,8 @@ namespace C868
     {
         SQLiteConnection cxn;
 
+        public User CurrentUser;
+
         public int SelectedTerm;
 
         public int SelectedCourse;
@@ -54,9 +56,9 @@ namespace C868
             cxn.Insert(new Requirement { AssessmentID = assessmentID, Req = req, Notes = notes, Satisfied = satisfied });
         }
 
-        public void AddTerm(string title, DateTime start, DateTime end)
+        public void AddTerm(int userID, string title, DateTime start, DateTime end)
         {
-            cxn.Insert(new Term { Title = title, Start = start, End = end });
+            cxn.Insert(new Term { UserID = userID, Title = title, Start = start, End = end });
         }
 
         public void AddUser(string userName, string password)
@@ -280,6 +282,11 @@ namespace C868
             cxn.Query<Term>("UPDATE terms SET Title = ?, Start = ?, End = ? WHERE TermID = ?", title, start, end, id);
         }
 
+        public void UpdateUser(int id, string password)
+        {
+            cxn.Query<User>("UPDATE users SET Password = ? WHERE UserID = ?", password, id);
+        }
+
         public bool AddAssessmentTypeChecker(object proposedType)
         {
             bool result = true;
@@ -438,6 +445,8 @@ namespace C868
                 // If both the user name and password match those of a user in the database, mark it as valid
                 foreach (User user in userList)
                 {
+                    CurrentUser = user;
+
                     if (user.UserName == userName)
                     {
                         userNameOK = true;
@@ -456,6 +465,25 @@ namespace C868
             }
 
             return result;
+        }
+
+        public List<bool> PasswordChecker(string current, string newPass, string confirm)
+        {
+            List<bool> results = new List<bool> { false, false };
+
+            // If the Current Password entry matches that of the current user, mark it as valid
+            if (current == App.PlannerRepo.CurrentUser.Password)
+            {
+                results[0] = true;
+            }
+
+            // If the proposed new password matches the Confirm Password entry, mark it as valid
+            if (newPass == confirm)
+            {
+                results[1] = true;
+            }
+
+            return results;
         }
 
         public bool PhoneChecker(string phone)

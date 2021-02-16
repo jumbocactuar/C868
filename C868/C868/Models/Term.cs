@@ -11,6 +11,8 @@ namespace C868.Models
         [PrimaryKey, AutoIncrement]
         public int TermID { get; set; }
 
+        public int UserID { get; set; }
+
         [MaxLength(50), Unique]
         public string Title { get; set; }
 

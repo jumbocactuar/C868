@@ -17,6 +17,8 @@ namespace C868
         public TermsPage()
         {
             InitializeComponent();
+
+            BindingContext = App.PlannerRepo.CurrentUser;
         }
 
         protected override void OnAppearing()
@@ -58,6 +60,21 @@ namespace C868
             }
         }
 
+        private async void AddUserButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddUserPage());
+        }
+
+        private async void ChangePasswordButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ChangePasswordPage());
+        }
+
+        private async void OnAddTermButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddTermPage());
+        }
+
         private async void SearchButton_Clicked(object sender, EventArgs e)
         {
             if (courseSearchEntry.Text == null || courseSearchEntry.Text == "")
@@ -80,11 +97,6 @@ namespace C868
                 }
             }
 
-        }
-
-        private async void OnAddTermButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddTermPage());
         }
 
         private async void TermsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
