@@ -29,6 +29,14 @@ namespace C868
                 App.PlannerRepo.AddAssessment(1, "R101 OA", "Objective", new DateTime(2021, 2, 1, 0, 0, 0), new DateTime(2021, 2, 7, 0, 0, 0), false);
                 App.PlannerRepo.AddAssessment(1, "R101 PA", "Performance", new DateTime(2021, 2, 8, 0, 0, 0), new DateTime(2021, 2, 15, 0, 0, 0), false);
             }
+
+            // Execute unit tests and display a message if any of them fail
+            bool result = App.PlannerRepo.ExecuteUnitTests();
+
+            if (result == false)
+            {
+                warningMessage.Text = "One or more unit tests have failed.\nPlease contact the SEMU IT Department for assistance.";
+            }
         }
 
         private async void LogInButton_Clicked(object sender, EventArgs e)

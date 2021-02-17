@@ -421,6 +421,27 @@ namespace C868
             return result;
         }
 
+        public bool ExecuteUnitTests()
+        {
+            bool result = false;
+
+            // Verify that EntryChecker rejects an invalid value
+            bool invalidChecker = EntryChecker("");
+
+            // Verify that EntryChecker accepts a valid value
+            bool validChecker = EntryChecker("Test");
+
+            // Verify that the database can be accessed
+            List<User> userList = GetAllUsers();
+
+            if (invalidChecker == false && validChecker == true && userList.Count > 0)
+            {
+                return result = true;
+            }
+
+            return result;
+        }
+
         public bool LoginChecker(string userName, string password)
         {
             bool result = false;
