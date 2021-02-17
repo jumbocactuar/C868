@@ -431,10 +431,7 @@ namespace C868
             // Verify that EntryChecker accepts a valid value
             bool validChecker = EntryChecker("Test");
 
-            // Verify that the database can be accessed
-            List<User> userList = GetAllUsers();
-
-            if (invalidChecker == false && validChecker == true && userList.Count > 0)
+            if (invalidChecker == false && validChecker == true)
             {
                 return result = true;
             }
