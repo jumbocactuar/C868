@@ -50,11 +50,12 @@
                 Margin="0, 7, 0, 0"
                 Style="{StaticResource addButtonStyle}"
                 Text="LOG IN" />
-
-            <Label x:Name="warningMessage"
-                   HorizontalOptions="Center"
+            <StackLayout HorizontalOptions="Center">
+                <Label x:Name="warningMessage"
+                   FontSize="14"
                    Padding="10"
                    Text="" />
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 </ContentPage>

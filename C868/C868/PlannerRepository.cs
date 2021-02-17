@@ -421,9 +421,9 @@ namespace C868
             return result;
         }
 
-        public bool ExecuteUnitTests()
+        public string ExecuteUnitTests()
         {
-            bool result = false;
+            string result = "One or more unit tests have failed.\nPlease email helpdesk@semu.edu for assistance.";
 
             // Verify that EntryChecker rejects an invalid value
             bool invalidChecker = EntryChecker("");
@@ -433,7 +433,7 @@ namespace C868
 
             if (invalidChecker == false && validChecker == true)
             {
-                return result = true;
+                return result = "System OK";
             }
 
             return result;
